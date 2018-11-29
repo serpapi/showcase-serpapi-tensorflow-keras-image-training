@@ -50,7 +50,7 @@ classify:
 	@echo "copy fruit images"
 	find data/ -maxdepth 1 -type f | grep -v "directory" | xargs -I {} mv {} data/train/fruit
 	@echo "create validation set"
-	cp data/train/fruit/a1.jpg data/validation/fruit
+	cp data/train/fruit/apple.jpg data/validation/fruit
 	cp data/train/brand/knowledge_graph_logo.png data/validation/brand
 
 # Train a simple model using Keras / tensorflow
