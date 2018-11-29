@@ -15,6 +15,7 @@ import sys
 print(tf.VERSION)
 print(tf.keras.__version__)
 
+# Resize image to this size
 IMAGE_HEIGHT = 200
 IMAGE_WIDTH  = 200
 
@@ -61,20 +62,19 @@ model.fit_generator(
 	validation_data=validation_generator,
         epochs=1)
 
-print "model trained"
-print "Note: the validation set accuracy is around 50%"
-print " which is terrible. You need a lot images."
-print " You probably need to download and manually classify around 10k images for a good results."
-print " So, you need to create an account with SerpAPI to download more images."
-print ">> https://serpapi.com"
+print "model trained."
+print ""
+print "Note: the validation accuracy is around 50%"
+print " which can be improve."
+print " but you need a lot more images!"
+print " You probably need to search, download and classify around 10k images for a good results."
+print " So, you would need an account with SerpApi."
+print " see: https://serpapi.com"
 
-# when you're real model is ready
+# when you model is ready.. 
 #
 # Save entire model to a HDF5 file
-#model.save('apple_model.h5')
+# model.save('data/apple_model.h5')
 
-# Recreate the exact same model, including weights and optimizer.
-#model = tf.keras.models.load_model('apple_model.h5')
-
-print("done")
+print("done.")
 sys.exit(0)

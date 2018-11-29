@@ -1,16 +1,17 @@
 #!/usr/bin/env python
 #
-# fetch image from serpapi
+# Fetch image usign SerpApi
 #
-# TODO need feature to be release in production to enable plugin
-#from lib.google_search_results import GoogleSearchResults
+from lib.google_search_results import GoogleSearchResults
 import requests
 import json
 import wget
 import os
 
-#import httplib
-
+# search images with SerpApi
+#  the search on the keyword: apple is free of charge 
+#   but any keyword required an api_key.
+#
 def get_batch(pageNumber):
     params = {
         "q" : "apple",
@@ -18,20 +19,16 @@ def get_batch(pageNumber):
         "hl" : "en",
         "gl" : "us",
         #"google_domain" : "google.com",
-        #"api_key" : "demo",
+        "api_key" : "demo",
         "tbm" : "isch",
         "ijn": pageNumber,
         "source": "test"
     }
 
     # TODO Switch to production
-    # query = GoogleSearchResults(params)
-    # data = query.get_dictionary()
-    # print(data)
-
-    # search serp API
-    rsp = requests.get("http://web:3000/search", params)
-    data = json.loads(rsp.text)
+    query = GoogleSearchResults(params)
+    data = query.get_dictionary()
+    print(data)
 
     # extract link
     links = []
@@ -43,6 +40,7 @@ def get_batch(pageNumber):
 # collect multiple batch
 links = []
 links += get_batch(0)
+# need
 
 # download images
 print "download images"
@@ -53,10 +51,10 @@ for link in links:
 	except:
 		pass
 
-# Delete bad images
-#os.remove("data/apple-1024x440.jpg")
-#print("all images download in data/")
+# Let's classify our images into two groups
+#  1- Apple Brand
+#  2- Apple Fruit
+# $> make classify
 
-
-# Let's train the model now.
+# Then we are ready to train the model
 # $> make train

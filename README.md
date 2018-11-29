@@ -38,7 +38,7 @@ Or
 ### With Docker 
 Run the command
 ```bash
-$> make 
+$> make all
 ```
 
 ### Without Docker
@@ -52,11 +52,10 @@ $> make build
 
 This model is not realistic because it achieves only 50% accuracy with less than 300images.
 You probably need to pull around 10k images to get a good results.
-Also, you might need multiple query like: 
+Also, you might need to create multiple query like: 
  * Apple Logo
  * Apple fuit
 This will save time when manually classifying the apple.
-
 
 In order to get more images, you need to register with SerpAPI.com.
 You will need to pick a plan matching the number of images required.

@@ -13,22 +13,29 @@ install:
 # Run docker instance for testing
 # TODO Remove local network
 run:
-	docker run -it --rm --network=serpapi_rails_default -v ${PWD}/.:/app -w /app tensorflow/tensorflow make build
+	docker run -it --rm -v ${PWD}/.:/app -w /app tensorflow/tensorflow make build
 
 debug:
-	docker run -it --rm --network=serpapi_rails_default -v ${PWD}/.:/app -w /app tensorflow/tensorflow bash
+	docker run -it --rm -v ${PWD}/.:/app -w /app tensorflow/tensorflow bash
 
-# build model
+# run all steps
 #
-build: fetch classify train
+build: dep fetch classify train
 
+# install dependency
 dep:
-	@echo "install file command"
-	@if [ ! -f /usr/bin/file ]; then
-		apt-get update && apt-get install file
-	fi
+	pip install wget
+	pip install google-search-results
+	apt-get update && apt-get install -y file
 
-# image classify
+# fetch images from SerpApi
+#  and download images from original source
+fetch:
+	mkdir -p data
+	python fetch.py
+
+# Image classify using regular expression.
+#  you need to revisit this method dependending on the problem.
 classify:
 	mkdir -p data/train/fruit
 	mkdir -p data/train/brand
@@ -46,15 +53,10 @@ classify:
 	cp data/train/fruit/a1.jpg data/validation/fruit
 	cp data/train/brand/knowledge_graph_logo.png data/validation/brand
 
-# fetch images
-fetch:
-	mkdir -p data
-	pip install wget
-	pip install requests
-	python fetch.py
-
-# TODO install serp api package
-# run a simple model with Keras / tensorflow
+# Train a simple model using Keras / tensorflow
+#  This keras model is trained using Keras ImageDataGenerator
+#  which allows to easy resize image, pad, handle multi-color images...
+#
 train:
 	python train.py
 
