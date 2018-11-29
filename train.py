@@ -62,6 +62,10 @@ model.fit_generator(
 	validation_data=validation_generator,
         epochs=1)
 
+print("save entire model to a HDF5 file")
+model.save('data/apple_model.h5')
+
+
 print "model trained."
 print ""
 print "Note: the validation accuracy is around 50%"
@@ -70,11 +74,6 @@ print " but you need a lot more images!"
 print " You probably need to search, download and classify around 10k images for a good results."
 print " So, you would need an account with SerpApi."
 print " see: https://serpapi.com"
-
-# when you model is ready.. 
-#
-# Save entire model to a HDF5 file
-# model.save('data/apple_model.h5')
 
 print("done.")
 sys.exit(0)
