@@ -4,7 +4,7 @@ SerpAPI enables images search using "Google Image".
 The Google results are converted into normalized JSON responses 
  that's easy to process in any programming language.
  
- @see: https://serpapi.com/images-results
+ > https://serpapi.com/images-results
 
 In this show case, we follow the latest documentation from keras 2.1.6 / tensorflow 1.12.0.
 
@@ -25,7 +25,7 @@ We are going to train a machine learning model based Tensorflow and Keras to rec
   Apple logo/brand versus a real Apple fruit.
  
 To introduce the reason behind this project. I wrote an article on medium.
-  https://medium.com/@vikoky/apple-vs-apple-84705c96eda5
+  > https://medium.com/@vikoky/apple-vs-apple-84705c96eda5
 
 Requirements
 ---
